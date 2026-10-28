@@ -1,0 +1,64 @@
+================================================================================
+           FAT32 PRO FORMATTER (PS3 & USB 500GB+ HAZIRLAYICI)
+================================================================================
+
+Bu uygulama; 500 GB, 1 TB, 2 TB ve üzeri USB bellekleri, harici hard diskleri (HDD) 
+ve taşınabilir SSD'leri sorunsuz bir şekilde FAT32 biçimlendirmek ve özellikle 
+PlayStation 3 (PS3) gibi konsollara tam uyumlu hale getirmek için geliştirilmiştir.
+
+--------------------------------------------------------------------------------
+1. GUIFORMAT (FAT32FORMAT) NEDEN BAZI DİSKLERİ GÖRMÜYOR VEYA HATA VERİYORDU?
+--------------------------------------------------------------------------------
+1) GPT Bölüm Tablosu Sorunu:
+   - 500 GB ve üzeri harici diskler Windows'ta genellikle modern "GPT" düzeninde 
+     bölümlendirilir.
+   - GUIFormat yalnızca klasik sürücü harflerini görür ve GPT diskleri MBR'ye 
+     dönüştüremez.
+   - En önemlisi: PS3 konsolu GPT diskleri ASLA tanımaz! PS3 için diskin mutlaka 
+     "MBR" (Master Boot Record) olması şarttır.
+
+2) Sürücü Harfi Olmayan veya RAW Diskler:
+   - Eğer diskte atanmış bir Windows harfi (E:, F: vb.) yoksa veya disk bozuk/RAW 
+     ise GUIFormat bu diski listede hiç göstermez.
+
+3) "Failed to open device - GetLastError()=32" Hatası:
+   - Windows Gezgini veya antivirüs diski o anda kilitlediğinde GUIFormat çöker.
+
+--------------------------------------------------------------------------------
+2. BU UYGULAMA NE YAPIYOR? (KESİN ÇÖZÜM)
+--------------------------------------------------------------------------------
+1) Tüm Fiziksel Diskleri Algılar:
+   - Diskin harfi olmasa bile, RAW veya GPT olsa bile fiziksel tüm USB ve harici 
+     diskleri tanır ve listeler.
+
+2) Otomatik MBR Dönüştürme (Tam Disk Hazırlığı Modu):
+   - Diski tamamen temizler, MBR bölüm tablosu oluşturur, tek birincil FAT32 bölümü 
+     yapar ve harf atar. PS3'ün %100 tanımasını sağlar.
+
+3) Dosya Kilidi Açma (GetLastError 32 Önleyici):
+   - Biçimlendirme öncesi diski kilitleyen arka plan işlemlerini ve Explorer 
+     kilitlerini otomatik olarak çözer.
+
+4) PS3 Klasör Yapısı (İsteğe Bağlı):
+   - Format bittiğinde diske otomatik olarak GAMES, PS3ISO, PKG ve PS3/UPDATE 
+     klasörlerini açar.
+
+5) Windows Güvenlik Kilidi:
+   - Windows'un kurulu olduğu C: Sistem ve Boot diskini kesinlikle korur, yanlışlıkla 
+     seçilip silinmesini imkansız kılar.
+
+--------------------------------------------------------------------------------
+3. NASIL KULLANILIR?
+--------------------------------------------------------------------------------
+Yöntem 1 (Önerilen):
+- Klasördeki "Baslat.bat" dosyasına veya doğrudan "FAT32_Pro_Format.exe"ye 
+  çift tıklayın.
+- Gelen Windows "Yönetici İzni" (UAC) onayına EVET deyin.
+
+Yöntem 2:
+1. Listeden USB diskinizi seçin (Örn: Disk 3 - 500 GB).
+2. "⭐ Tam Disk Hazırlığı (MBR Dönüştür + Tek FAT32 Bölümü)" seçeneğini işaretli bırakın.
+3. Birim Etiketi (varsayılan: PS3_USB) ve Küme Boyutunu (32 KB önerilir) ayarlayın.
+4. "🚀 FAT32 FORMATI VE HAZIRLIĞI BAŞLAT" butonuna basın ve onaylayın.
+5. İşlem birkaç saniye içinde tamamlanacaktır.
+================================================================================
